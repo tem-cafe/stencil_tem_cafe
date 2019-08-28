@@ -8,9 +8,42 @@
   Any global CSS variables should also be applied here.
 */
 
+body,
+html {
+    height: 100%;
+}
 
 body {
-  margin: 0px;
-  padding: 0px;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+:root {
+    --primary: #73430D;
+    --secundary: #A68865;
+    --tertiary: #40190D;
+    --green1: #234D36;
+    --green2: #0D731F;
+}
+
+.bg-primary {
+    background-color: #73430D;
+}
+
+.bg-secundary {
+    background-color: #A68865;
+}
+
+.bg-tertiary {
+    background-color: #40190D;
+}
+
+.bg-green1 {
+    background-color: #234D36;
+}
+
+.bg-green2 {
+    background-color: #0D731F;
 }

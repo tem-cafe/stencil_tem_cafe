@@ -1,26 +1,96 @@
 .app-home {
-  padding: 10px;
+    padding: 10px;
 }
 
 button {
-  background: #5851ff;
-  color: white;
-  margin: 8px;
-  border: none;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 16px 20px;
-  border-radius: 2px;
-  box-shadow: 0 8px 16px rgba(0,0,0,.1), 0 3px 6px rgba(0,0,0,.08);
-  outline: 0;
-  letter-spacing: .04em;
-  transition: all .15s ease;
-  cursor: pointer;
-}
-  
-button:hover {
-  box-shadow: 0 3px 6px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.1);
-  transform: translateY(1px);
+    background: #5851ff;
+    color: white;
+    margin: 8px;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 16px 20px;
+    border-radius: 2px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .08);
+    outline: 0;
+    letter-spacing: .04em;
+    transition: all .15s ease;
+    cursor: pointer;
 }
 
+button:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .1);
+    transform: translateY(1px);
+}
+
+.app-home {
+    width: 100%;
+    height: 100vh;
+    display: block;
+    position: relative;
+}
+
+.app-home::after {
+    content: "";
+    background: url(https://athome.starbucks.com/sites/site.prod.athome.starbucks.com/files/2019-06/CoffeeFinder_ArticleHeader_Desktop_1176x712.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%
+}
+
+.card .icon {
+    font-size: 4em;
+}
+
+.card {
+    width: 40%;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.card.botton {
+    width: 90%;
+}
+
+.card.botton p {
+    margin: 1vh 0vh 1vh 0vh
+}
+
+.cards-botton {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.click-warning {
+    text-align: center
+}
+
+
+/* On mouse-over, add a deeper shadow */
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/* Add some padding inside the card container */
+
+.container {
+    padding: 2px 16px;
+}

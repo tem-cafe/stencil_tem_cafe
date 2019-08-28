@@ -10,10 +10,19 @@ export class AppProfile {
   @Prop() match: MatchResults;
 
   normalize(name: string): string {
-    if (name) {
-      return name.substr(0, 1).toUpperCase() + name.substr(1).toLowerCase();
+    switch (+name) {
+      case 1:
+        return "Tem"
+        break;
+      case 2:
+return "Não tem"
+        break;
+      case 3:
+      return "Você ta fazendo o"
+        break;
+      default:
+        break;
     }
-    return '';
   }
 
   render() {
@@ -21,8 +30,7 @@ export class AppProfile {
       return (
         <div class="app-profile">
           <p>
-            Hello! My name is {this.normalize(this.match.params.name)}. My name was passed in
-            through a route param!
+            Blz, registramos que {this.normalize(this.match.params.name)} café. vlw 
           </p>
         </div>
       );
