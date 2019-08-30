@@ -1,40 +1,54 @@
-# Stencil App Starter
+# Rodar esse Projeto
 
-Stencil is a compiler for building fast web apps using Web Components.
-
-Stencil combines the best concepts of the most popular frontend frameworks into a compile-time rather than run-time tool.  Stencil takes TypeScript, JSX, a tiny virtual DOM layer, efficient one-way data binding, an asynchronous rendering pipeline (similar to React Fiber), and lazy-loading out of the box, and generates 100% standards-based Web Components that run in any browser supporting the Custom Elements v1 spec.
-
-Stencil components are just Web Components, so they work in any major framework or with no framework at all. In many cases, Stencil can be used as a drop in replacement for traditional frontend frameworks given the capabilities now available in the browser, though using it as such is certainly not required.
-
-Stencil also enables a number of key capabilities on top of Web Components, in particular Server Side Rendering (SSR) without the need to run a headless browser, pre-rendering, and objects-as-properties (instead of just strings).
-
-## Getting Started
-
-To start a new project using Stencil, clone this repo to a new directory:
-
-```bash
-npm init stencil app
-```
-
-and run:
-
+clone o projeto entre na pasta e rode 
 ```bash
 npm start
 ```
 
-To build the app for production, run:
+# Sobre Stencil
+Stencil  uma ferramenta rápida de construção de WebApps e web Componentes criada pela Ionic Team para ajudar a criar componentes que sejam utilizadas em multiplas plataformas
+
+## Porque usar stencil:
+
+Stencil combina as melhores características contidas em ferramentas atuais como Ionic, angular ,React.
+Como por exemplo: 
+	Virtual DOM
+Async rendering (React Fiber)
+Reactive data-binding
+TypeScript
+JSX
+
+Além da vantagem de ser mais simples que as outras ferramentas, o'que faz com que sua estrutura básica seja alterada pelo usuário a cada projeto caso queira
+
+
+## Getting Started
+
+novo projeto:
+
+```bash
+npx create-stencil
+```
+
+entre na pasta e rode:
+
+```bash
+cd ./<nome que você escolheu para o projeto>
+npm i
+npm start
+```
+
+Build de produção:
 
 ```bash
 npm run build
 ```
 
-To run the unit tests once, run:
-
+Rodar testes:
 ```
 npm test
 ```
 
-To run the unit tests and watch for file changes during development, run:
+Rodar testes de interface (E2E):
 
 ```
 npm run test.watch
