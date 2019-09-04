@@ -8,11 +8,14 @@ import { ApiActions } from '../../global/app';
   shadow: false
 })
 export class AppRoot {
-  @Prop({mutable:true}) coffeState: string;
+  @Prop({ mutable: true }) coffeState: string;
 
   async componentDidLoad() {
     ApiActions.getCoffeeState().subscribe(async item => {
       switch (item) {
+        case 0:
+          this.coffeState = <ion-spinner></ion-spinner>
+          break;
         case 1:
           this.coffeState = "👍"
           break;
@@ -22,14 +25,12 @@ export class AppRoot {
         case 3:
           this.coffeState = "♨️"
           break;
-        case 0:
-            this.coffeState = <ion-spinner></ion-spinner>
-            break;
         default:
-            this.coffeState = "💤";
+          this.coffeState = "💤";
           break;
       }
     })
+    ApiActions.requestCoffeeState()
   }
   checkLogin() {
 
@@ -42,6 +43,7 @@ export class AppRoot {
       <div>
         <header class="header">
           <h1>Tem_Café: {this.coffeState}</h1>
+          <div><a class="refresh" onClick={()=>ApiActions.requestCoffeeState()}>🔄</a></div>
         </header>
 
         <main>

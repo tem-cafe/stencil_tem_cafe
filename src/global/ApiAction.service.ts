@@ -15,7 +15,7 @@ export class ApiActionService {
     async haveCoffee() {
         const response = await this.request(Actions.have)
         if (response.status == 200) {
-            this.requestCoffeeState(1)
+            this.requestCoffeeState()
         }
         else{
             this.CoffeeState.next(Actions.error)
@@ -25,7 +25,7 @@ export class ApiActionService {
     async dontHaveCoffee() {
         const response = await this.request(Actions.dontHave)
         if (response.status == 200) {
-            this.requestCoffeeState(Actions.dontHave)
+            this.requestCoffeeState()
         }
         else{
             this.CoffeeState.next(Actions.error)
@@ -35,7 +35,7 @@ export class ApiActionService {
     async makingCoffee() {
         const response = await this.request(Actions.making)
         if (response.status == 200) {
-            this.requestCoffeeState(Actions.making)
+            this.requestCoffeeState()
         }
         else{
             this.CoffeeState.next(Actions.error)
@@ -46,11 +46,11 @@ export class ApiActionService {
         return this.CoffeeState.asObservable()
     }
     
-    async requestCoffeeState(type:Actions){
+    async requestCoffeeState(){
         this.CoffeeState.next(Actions.check)
         const response = await this.request(Actions.check)
         if (response.status == 200) {
-            this.CoffeeState.next(type)
+            this.CoffeeState.next((await response.json()))
         }
         else{
             this.CoffeeState.next(Actions.error)
