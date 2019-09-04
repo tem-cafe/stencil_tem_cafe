@@ -1,17 +1,17 @@
 import { Component, h, Prop } from '@stencil/core';
-import { LocalStorageSevice, coffeState } from '../../global/app';
+import { ApiActions } from '../../global/app';
 
 
 @Component({
   tag: 'app-root',
   styleUrl: 'app-root.css',
-  shadow: true
+  shadow: false
 })
 export class AppRoot {
-  @Prop() coffeState: string;
+  @Prop({mutable:true}) coffeState: string;
 
-  componentDidLoad() {
-    coffeState.asObservable().subscribe(item => {
+  async componentDidLoad() {
+    ApiActions.getCoffeeState().subscribe(async item => {
       switch (item) {
         case 1:
           this.coffeState = "👍"
@@ -22,12 +22,14 @@ export class AppRoot {
         case 3:
           this.coffeState = "♨️"
           break;
-
+        case 0:
+            this.coffeState = <ion-spinner></ion-spinner>
+            break;
         default:
+            this.coffeState = "💤";
           break;
       }
     })
-    console.log(LocalStorageSevice._key)
   }
   checkLogin() {
 
@@ -38,7 +40,7 @@ export class AppRoot {
   render() {
     return (
       <div>
-        <header>
+        <header class="header">
           <h1>Tem_Café: {this.coffeState}</h1>
         </header>
 

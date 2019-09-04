@@ -14,6 +14,8 @@ import {
 export namespace Components {
   interface AppHome {
     'history': RouterHistory;
+    'spinner': boolean;
+    'toastMsg': string;
   }
   interface AppLogin {}
   interface AppProfile {
@@ -61,6 +63,8 @@ declare global {
 declare namespace LocalJSX {
   interface AppHome extends JSXBase.HTMLAttributes<HTMLAppHomeElement> {
     'history'?: RouterHistory;
+    'spinner'?: boolean;
+    'toastMsg'?: string;
   }
   interface AppLogin extends JSXBase.HTMLAttributes<HTMLAppLoginElement> {}
   interface AppProfile extends JSXBase.HTMLAttributes<HTMLAppProfileElement> {

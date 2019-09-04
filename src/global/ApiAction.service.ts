@@ -1,34 +1,76 @@
-import { coffeState } from "./app";
+import { Subject } from "rxjs";
+import { API_URL } from "./app";
 
-enum Actions{
-    have=1,
-    dontHave=2,
-    making=3
-
+enum Actions {
+    error = -1,
+    check = 0,
+    have = 1,
+    dontHave = 2,
+    making = 3
 }
 export class ApiActionService {
-    private url = "https://api"
+    private CoffeeState:Subject<Actions> = new Subject()
+    private url = API_URL
     constructor() { }
-    haveCoffee() {
-        coffeState.next(1)
-        return this.request(Actions.have)
+    async haveCoffee() {
+        const response = await this.request(Actions.have)
+        if (response.status == 200) {
+            this.requestCoffeeState(1)
+        }
+        else{
+            this.CoffeeState.next(Actions.error)
+        }
+        return response.clone()
     }
-    dontHaveCoffee() {
-        coffeState.next(2)
-        return this.request(Actions.dontHave)
+    async dontHaveCoffee() {
+        const response = await this.request(Actions.dontHave)
+        if (response.status == 200) {
+            this.requestCoffeeState(Actions.dontHave)
+        }
+        else{
+            this.CoffeeState.next(Actions.error)
+        }
+        return response.clone()
     }
-    makingCoffee() {
-        coffeState.next(3)
-        return this.request(Actions.making)
+    async makingCoffee() {
+        const response = await this.request(Actions.making)
+        if (response.status == 200) {
+            this.requestCoffeeState(Actions.making)
+        }
+        else{
+            this.CoffeeState.next(Actions.error)
+        }
+        return response.clone()
     }
-    private request(act:Actions) {
-        return fetch(this.url, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-            method: "POST",
-            body:JSON.stringify( {action:act})
-        })
+    public getCoffeeState(){
+        return this.CoffeeState.asObservable()
+    }
+    
+    async requestCoffeeState(type:Actions){
+        this.CoffeeState.next(Actions.check)
+        const response = await this.request(Actions.check)
+        if (response.status == 200) {
+            this.CoffeeState.next(type)
+        }
+        else{
+            this.CoffeeState.next(Actions.error)
+        }
+    }
+    private async request(act: Actions):Promise<Response> {
+        try {
+            return await  fetch(this.url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({ action: act })
+            })
+        }
+        catch (e) {
+            return await  new Promise((resolve) =>{
+                resolve(new Response(null,{status:503}))
+            })
+        }
     }
 }

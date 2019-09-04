@@ -1,19 +1,27 @@
+// declare let $: any
 import { Component, h, Prop } from '@stencil/core';
 import { ApiActions } from '../../global/app';
 import { RouterHistory } from '@stencil/router';
+import { toastController } from '@ionic/core'
 
 @Component({
   tag: 'app-home',
   styleUrl: 'app-home.css',
-  shadow: true
+  shadow: false
 })
 export class AppHome {
   @Prop() history: RouterHistory;
+  @Prop({ mutable: true }) toastMsg: string;
+  @Prop({ mutable: true })spinner: boolean = false;
+
   render() {
     return (
       <div class='app-home'>
-        <h1 class="click-warning">TEM CAFÉ?</h1>
-        <p class="click-warning">click no card para avisar geral</p>
+        
+        <h1 class="page-title">TEM CAFÉ?</h1>
+        <div class="page-subTitle">{this.spinner?<ion-spinner class="click-warning"></ion-spinner>:<p class="click-warning">click no card para avisar geral</p>}
+        </div>
+        <div class="page-body">
         <div class="cards">
           <div class="card" onClick={() => this.vote(1)}>
             <p class="icon">👍</p>
@@ -21,7 +29,7 @@ export class AppHome {
               <h4><b>TEM CAFÉ AGORA</b></h4>
             </div>
           </div>
-          <div class="card"onClick={() => this.vote(2)}>
+          <div class="card" onClick={() => this.vote(2)}>
             <p class="icon">👎</p>
             <div class="container">
               <h4><b> NÃO TEM CAFÉ AGORA</b></h4>
@@ -37,29 +45,50 @@ export class AppHome {
             </div>
           </div>
         </div>
-
-        {/* <stencil-route-link url='/profile/stencil'>
-          <button>
-            Ação
-          </button>
-        </stencil-route-link> */}
+        </div>
       </div>
     );
   }
-  vote(type: number): void {
+  async vote(type: number) {
+    this.spinner = true
+    let response: Promise<Response> = null
     switch (type) {
       case 1:
-        ApiActions.haveCoffee()
-        this.history.push(`/profile/1`, {});
+        response = ApiActions.haveCoffee()
         break;
       case 2:
-        ApiActions.dontHaveCoffee()
-        this.history.push(`/profile/2`, {});
+        response = ApiActions.dontHaveCoffee()
         break;
       case 3:
-        ApiActions.makingCoffee()
-        this.history.push(`/profile/3`, {});
+        response = ApiActions.makingCoffee()
         break;
+    }
+    ((await response).status == 200) ? this.toastResolve(type) : this.toastReject()
+    this.spinner = false
+
+  }
+  async toastResolve(type: number) {
+    let toastCtrl = await toastController.create({
+      message: `Blz, registramos que ${this.normalize(type)} café. vlw `,
+      duration: 2000
+    });
+    toastCtrl.present()
+  }
+  async toastReject() {
+    let toastCtrl = await toastController.create({
+      message: `Falha ao enviar aviso<br> tente novamente mais tarde`,
+      duration: 2000
+    });
+    toastCtrl.present()
+  }
+  normalize(name: number): string {
+    switch (name) {
+      case 1:
+        return "tem"
+      case 2:
+        return "não tem"
+      case 3:
+        return "você ta fazendo o"
       default:
         break;
     }

@@ -1,5 +1,5 @@
-header {
-    background-color: var(--primary);
+.header {
+    background-color: var(--cooffee-primary);
     color: white;
     height: 56px;
     display: flex;

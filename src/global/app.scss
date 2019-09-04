@@ -8,6 +8,9 @@
   Any global CSS variables should also be applied here.
 */
 
+
+/* @import '../../node_modules/bootstrap/dist/css/bootstrap.css'; */
+
 body,
 html {
     height: 100%;
@@ -21,11 +24,11 @@ body {
 }
 
 :root {
-    --primary: #73430D;
-    --secundary: #A68865;
-    --tertiary: #40190D;
-    --green1: #234D36;
-    --green2: #0D731F;
+    --cooffee-primary: #73430D;
+    --cooffee-secundary: #A68865;
+    --cooffee-tertiary: #40190D;
+    --cooffee-green1: #234D36;
+    --cooffee-green2: #0D731F;
 }
 
 .bg-primary {

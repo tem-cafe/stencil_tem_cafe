@@ -13,13 +13,10 @@ export class AppProfile {
     switch (+name) {
       case 1:
         return "Tem"
-        break;
       case 2:
 return "Não tem"
-        break;
       case 3:
       return "Você ta fazendo o"
-        break;
       default:
         break;
     }
