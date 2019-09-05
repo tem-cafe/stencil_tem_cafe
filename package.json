@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "Stencil App Starter",
   "scripts": {
-    "web":"sudo live-server ./www --port=80",
+    "web":"live-server ./www --port=80",
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
