@@ -3,8 +3,11 @@
   "private": true,
   "version": "0.0.1",
   "description": "Stencil App Starter",
+  "engines": {
+    "node": "8.11.1"
+  },
   "scripts": {
-    "web":"live-server ./www --port=8080",
+    "web": "live-server ./www",
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
