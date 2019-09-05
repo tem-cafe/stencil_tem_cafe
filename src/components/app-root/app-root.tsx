@@ -1,5 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
-import { ApiActions } from '../../global/app';
+import { ApiActions, notificationsService } from '../../global/app';
 
 
 @Component({
@@ -18,12 +18,15 @@ export class AppRoot {
           break;
         case 1:
           this.coffeState = "👍"
+          notificationsService.notify("Alou TEM CAFÉ")
           break;
         case 2:
           this.coffeState = "👎"
+          notificationsService.notify("cabô café")
           break;
         case 3:
           this.coffeState = "♨️"
+          notificationsService.notify("café on the making!!")
           break;
         default:
           this.coffeState = "💤";
