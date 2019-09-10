@@ -24,6 +24,11 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "24.0.18",
+    "@types/puppeteer": "1.19.1",
+    "jest": "24.8.0",
+    "jest-cli": "24.8.0",
+    "puppeteer": "1.19.0",
     "workbox-build": "4.3.1"
   }
 }
