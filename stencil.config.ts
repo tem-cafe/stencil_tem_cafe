@@ -12,7 +12,7 @@ export const config: Config = {
       serviceWorker: {
           swSrc: 'src/sw.js'
       },
-      baseUrl: 'https://myapp.local/'
+      baseUrl: 'https://myapp.local/',
     }
   ]
 };

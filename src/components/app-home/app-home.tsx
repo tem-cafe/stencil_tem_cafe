@@ -24,13 +24,13 @@ export class AppHome {
         <div class="page-body">
         <div class="cards">
           <div class="card" onClick={() => this.vote(1)}>
-            <p class="icon">👍</p>
+            <p class="icon"><i class="fa fa-thumbs-up" aria-hidden="true"></i></p>
             <div class="container">
               <h4><b>TEM CAFÉ AGORA</b></h4>
             </div>
           </div>
           <div class="card" onClick={() => this.vote(2)}>
-            <p class="icon">👎</p>
+            <p class="icon"><i class="fa fa-thumbs-down" aria-hidden="true"></i></p>
             <div class="container">
               <h4><b> NÃO TEM CAFÉ AGORA</b></h4>
             </div>
@@ -39,9 +39,9 @@ export class AppHome {
         </div>
         <div class="cards-botton" onClick={() => this.vote(3)}>
           <div class="card botton">
-            <p class="icon">♨️</p>
+            <p class="icon"><i class="fa fa-coffee" aria-hidden="true"></i><i class="fa fa-thermometer-full" aria-hidden="true"></i></p>
             <div class="container">
-              <h4><b> TO FAZENDO</b></h4>
+              <h4><b> FIZ CAFÉ!!</b></h4>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@ export class AppHome {
       case 2:
         return "não tem"
       case 3:
-        return "você ta fazendo o"
+        return "você fez o"
       default:
         break;
     }

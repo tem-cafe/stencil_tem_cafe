@@ -10,6 +10,10 @@ import {
   MatchResults,
   RouterHistory,
 } from '@stencil/router';
+import {
+  loginAPiModel,
+  temCafeApiModel,
+} from './global/app';
 
 export namespace Components {
   interface AppHome {
@@ -22,8 +26,11 @@ export namespace Components {
     'match': MatchResults;
   }
   interface AppRoot {
-    'coffeState': string;
+    'coffeState': temCafeApiModel;
+    'coffeStateText': string;
+    'user': loginAPiModel;
   }
+  interface CadUser {}
 }
 
 declare global {
@@ -52,11 +59,18 @@ declare global {
     prototype: HTMLAppRootElement;
     new (): HTMLAppRootElement;
   };
+
+  interface HTMLCadUserElement extends Components.CadUser, HTMLStencilElement {}
+  var HTMLCadUserElement: {
+    prototype: HTMLCadUserElement;
+    new (): HTMLCadUserElement;
+  };
   interface HTMLElementTagNameMap {
     'app-home': HTMLAppHomeElement;
     'app-login': HTMLAppLoginElement;
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
+    'cad-user': HTMLCadUserElement;
   }
 }
 
@@ -71,14 +85,18 @@ declare namespace LocalJSX {
     'match'?: MatchResults;
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {
-    'coffeState'?: string;
+    'coffeState'?: temCafeApiModel;
+    'coffeStateText'?: string;
+    'user'?: loginAPiModel;
   }
+  interface CadUser extends JSXBase.HTMLAttributes<HTMLCadUserElement> {}
 
   interface IntrinsicElements {
     'app-home': AppHome;
     'app-login': AppLogin;
     'app-profile': AppProfile;
     'app-root': AppRoot;
+    'cad-user': CadUser;
   }
 }
 
