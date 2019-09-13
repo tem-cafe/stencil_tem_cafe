@@ -1,13 +1,13 @@
 {
-  "name": "Stencil Tem Café",
-  "short_name": "Tem_café",
-  "start_url": "/",
-  "display": "standalone",
-  "icons": [{
-    "src": "assets/icon/icon.svg",
-    "sizes": "512x512",
-    "type": "image/svg+xml"
-  }],
-  "background_color": "#16161d",
-  "theme_color": "#16161d"
+    "name": "Stencil Tem Café",
+    "short_name": "Tem_café",
+    "start_url": "/",
+    "display": "standalone",
+    "icons": [{
+        "src": "assets/icon/icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }],
+    "background_color": "#16161d",
+    "theme_color": "#16161d"
 }

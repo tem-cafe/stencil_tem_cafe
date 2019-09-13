@@ -18,8 +18,12 @@ self.addEventListener('push', event => {
 
     event.waitUntil(self.registration.showNotification(title, options));
 });
-self.addEventListener('message', function(evt) {
-    self.registration.showNotification(evt.data);
+self.addEventListener('message', function({ data }) {
+    if (data === "skipWaiting") {
+        self.skipWaiting();
+    }
+    self.registration.showNotification(data);
+
 })
 
 function send_message_to_sw(msg) {
@@ -48,5 +52,6 @@ async function getTemCafe() {
     temCafe = temCafeNow
 
 }
+
 // the precache manifest will be injected into the following line
 self.workbox.precaching.precacheAndRoute([]);
